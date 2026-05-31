@@ -1,7 +1,7 @@
 import os
 
 DEBUG = False
-ALLOWED_HOSTS = [os.environ.get('ALB_DNS', '*')]
+ALLOWED_HOSTS = ['56.228.81.228', 'localhost', '127.0.0.1', '*']
 
 DATABASES = {
     'default': {
