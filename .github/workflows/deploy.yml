@@ -25,4 +25,6 @@ jobs:
             pip install -r requirements.txt
             python manage.py migrate
             pkill -f gunicorn || true
-            gunicorn webcrm.wsgi:application --bind 0.0.0.0:8000 --workers 3 --daemon
+            nohup gunicorn webcrm.wsgi:application --bind 0.0.0.0:8000 --workers 3 > /tmp/gunicorn.log 2>&1 &
+            sleep 2
+            echo "Deploy successful"
