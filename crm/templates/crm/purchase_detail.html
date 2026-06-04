@@ -1,0 +1,99 @@
+{% extends "base_modern.html" %}
+{% load static %}
+
+{% block title %}Purchase Details{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-gray-800">Purchase Details</h1>
+            <div class="flex gap-2">
+                <a href="{% url 'purchase:edit' purchase.pk %}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">Edit</a>
+                <a href="{% url 'purchase:list' %}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">Back</a>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div>
+                    <p class="text-gray-600 font-semibold">Product</p>
+                    <p class="text-lg">{{ purchase.product.name }}</p>
+                </div>
+                <div>
+                    <p class="text-gray-600 font-semibold">Quantity</p>
+                    <p class="text-lg">{{ purchase.quantity }}</p>
+                </div>
+                <div>
+                    <p class="text-gray-600 font-semibold">Unit Price</p>
+                    <p class="text-lg">{{ purchase.currency.symbol }}{{ purchase.unit_price }}</p>
+                </div>
+                <div>
+                    <p class="text-gray-600 font-semibold">Total Price</p>
+                    <p class="text-lg font-bold text-blue-600">{{ purchase.currency.symbol }}{{ purchase.total_price }}</p>
+                </div>
+                <div>
+                    <p class="text-gray-600 font-semibold">Status</p>
+                    <p class="text-lg">
+                        <span class="px-3 py-1 rounded text-white font-semibold
+                            {% if purchase.status == 'completed' %}bg-green-500{% elif purchase.status == 'pending' %}bg-yellow-500{% elif purchase.status == 'cancelled' %}bg-red-500{% else %}bg-blue-500{% endif %}">
+                            {{ purchase.get_status_display }}
+                        </span>
+                    </p>
+                </div>
+                <div>
+                    <p class="text-gray-600 font-semibold">Currency</p>
+                    <p class="text-lg">{{ purchase.currency.code }} ({{ purchase.currency.symbol }})</p>
+                </div>
+                <div>
+                    <p class="text-gray-600 font-semibold">Purchase Date</p>
+                    <p class="text-lg">{{ purchase.purchase_date|date:"Y-m-d H:i" }}</p>
+                </div>
+                {% if purchase.delivery_date %}
+                <div>
+                    <p class="text-gray-600 font-semibold">Delivery Date</p>
+                    <p class="text-lg">{{ purchase.delivery_date|date:"Y-m-d H:i" }}</p>
+                </div>
+                {% endif %}
+                {% if purchase.size %}
+                <div>
+                    <p class="text-gray-600 font-semibold">Size</p>
+                    <p class="text-lg">{{ purchase.size }}</p>
+                </div>
+                {% endif %}
+                {% if purchase.color %}
+                <div>
+                    <p class="text-gray-600 font-semibold">Color</p>
+                    <p class="text-lg">{{ purchase.color }}</p>
+                </div>
+                {% endif %}
+                {% if purchase.payment_method %}
+                <div>
+                    <p class="text-gray-600 font-semibold">Payment Method</p>
+                    <p class="text-lg">{{ purchase.payment_method }}</p>
+                </div>
+                {% endif %}
+                {% if purchase.invoice_number %}
+                <div>
+                    <p class="text-gray-600 font-semibold">Invoice Number</p>
+                    <p class="text-lg">{{ purchase.invoice_number }}</p>
+                </div>
+                {% endif %}
+            </div>
+            
+            {% if purchase.notes %}
+            <div class="mb-6">
+                <p class="text-gray-600 font-semibold mb-2">Notes</p>
+                <div class="bg-gray-100 p-4 rounded">
+                    {{ purchase.notes }}
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="pt-6 border-t">
+                <a href="{% url 'purchase:delete' purchase.pk %}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Delete Purchase</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

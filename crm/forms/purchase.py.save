@@ -1,0 +1,82 @@
+from django import forms
+from crm.models import Purchase, Product, Currency
+
+
+class PurchaseForm(forms.ModelForm):
+    """Form for users to create purchases"""
+    
+    class Meta:
+        model = Purchase
+        fields = ['product', 'quantity', 'unit_price', 'currency', 'size', 'color', 'payment_method', 'delivery_date', 'notes', 'invoice_number']
+        widgets = {
+            'product': forms.Select(attrs={
+                'class': 'form-control',
+                'placeholder': 'Select Product/Clothes'
+            }),
+            'quantity': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Quantity',
+                'min': '1'
+            }),
+            'unit_price': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Price per unit',
+                'step': '0.01'
+            }),
+            'currency': forms.Select(attrs={
+                'class': 'form-control',
+                'placeholder': 'Currency'
+            }),
+            'size': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Size (S, M, L, XL, etc.)'
+            }),
+            'color': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Color'
+            }),
+            'payment_method': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Payment Method (Card, Cash, etc.)'
+            }),
+            'delivery_date': forms.DateTimeInput(attrs={
+                'class': 'form-control',
+                'type': 'datetime-local',
+                'placeholder': 'Delivery Date'
+            }),
+            'notes': forms.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Additional Notes',
+                'rows': 3
+            }),
+            'invoice_number': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Invoice/Receipt Number'
+            }),
+        }
+    
+    def __init__(self, *args, user=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.user = user
+        
+        # Make optional fields optional
+        self.fields['size'].required = False
+        self.fields['color'].required = False
+        self.fields['payment_method'].required = False
+        self.fields['delivery_date'].required = False
+        self.fields['notes'].required = False
+        self.fields['invoice_number'].required = False
+    
+    def save(self, commit=True):
+        """Save purchase with current user"""
+        instance = super().save(commit=False)
+        if self.user:
+            instance.user = self.user
+        if commit:
+            instance.save()
+        return instance
+^O
+
+^X
+y
+

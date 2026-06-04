@@ -28,6 +28,7 @@ from crm.models import Request
 from crm.models import Tag
 from crm.models import Shipment
 from crm.models import Stage
+from crm.models import Purchase
 from crm.site import companyadmin
 from crm.site import dealadmin
 from crm.site import contactadmin
@@ -37,6 +38,7 @@ from crm.site import requestadmin
 from crm.site import productadmin
 from crm.site import tagadmin
 from crm.site import cityadmin
+from crm.site import purchaseadmin
 from crm.site.currencyadmin import CurrencyAdmin
 from crm.site.paymentadmin import PaymentAdmin
 from crm.site.shipmentadmin import ShipmentAdmin

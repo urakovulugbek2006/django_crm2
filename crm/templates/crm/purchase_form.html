@@ -1,0 +1,124 @@
+{% extends "base_modern.html" %}
+{% load static %}
+
+{% block title %}{{ title }} - Purchase{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto">
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h1 class="text-3xl font-bold mb-6 text-gray-800">{{ title }}</h1>
+            
+            <form method="post" class="space-y-6">
+                {% csrf_token %}
+                
+                {% if form.non_field_errors %}
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Product -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">{{ form.product.label }}</label>
+                        {{ form.product }}
+                        {% if form.product.errors %}
+                            <p class="text-red-500 text-sm mt-1">{{ form.product.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Quantity -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">{{ form.quantity.label }}</label>
+                        {{ form.quantity }}
+                        {% if form.quantity.errors %}
+                            <p class="text-red-500 text-sm mt-1">{{ form.quantity.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Unit Price -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">{{ form.unit_price.label }}</label>
+                        {{ form.unit_price }}
+                        {% if form.unit_price.errors %}
+                            <p class="text-red-500 text-sm mt-1">{{ form.unit_price.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Currency -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">{{ form.currency.label }}</label>
+                        {{ form.currency }}
+                        {% if form.currency.errors %}
+                            <p class="text-red-500 text-sm mt-1">{{ form.currency.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Size -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">{{ form.size.label }}</label>
+                        {{ form.size }}
+                        {% if form.size.errors %}
+                            <p class="text-red-500 text-sm mt-1">{{ form.size.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Color -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">{{ form.color.label }}</label>
+                        {{ form.color }}
+                        {% if form.color.errors %}
+                            <p class="text-red-500 text-sm mt-1">{{ form.color.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Payment Method -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">{{ form.payment_method.label }}</label>
+                        {{ form.payment_method }}
+                        {% if form.payment_method.errors %}
+                            <p class="text-red-500 text-sm mt-1">{{ form.payment_method.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Delivery Date -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">{{ form.delivery_date.label }}</label>
+                        {{ form.delivery_date }}
+                        {% if form.delivery_date.errors %}
+                            <p class="text-red-500 text-sm mt-1">{{ form.delivery_date.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Invoice Number -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">{{ form.invoice_number.label }}</label>
+                        {{ form.invoice_number }}
+                        {% if form.invoice_number.errors %}
+                            <p class="text-red-500 text-sm mt-1">{{ form.invoice_number.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Notes -->
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">{{ form.notes.label }}</label>
+                    {{ form.notes }}
+                    {% if form.notes.errors %}
+                        <p class="text-red-500 text-sm mt-1">{{ form.notes.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                
+                <!-- Buttons -->
+                <div class="flex gap-4 justify-end">
+                    <a href="{% url 'purchase:list' %}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded">Cancel</a>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded">{{ title }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

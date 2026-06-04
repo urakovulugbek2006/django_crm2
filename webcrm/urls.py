@@ -9,7 +9,7 @@ from django.conf.urls.i18n import i18n_patterns
 from common.views.favicon import FaviconRedirect
 from crm.views.contact_form import contact_form
 from massmail.views.get_oauth2_tokens import get_refresh_token
-
+from django.urls import include
 
 urlpatterns = [
     path('favicon.ico', FaviconRedirect.as_view()),

@@ -93,4 +93,5 @@ urlpatterns = [
         staff_member_required(download_original_email),
         name='download_original_email'
     ),
+        path('purchase/', include('crm.urls_purchase', namespace='purchase')),
 ]

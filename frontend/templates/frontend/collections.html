@@ -1,0 +1,87 @@
+{% extends 'frontend/base.html' %}
+{% block title %}Collections — HITLUR Fashion{% endblock %}
+{% block extra_css %}
+<style>
+    .page-hero { height: 50vh; background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+        display: flex; align-items: center; justify-content: center; text-align: center; }
+    .page-hero h1 { font-size: 56px; font-weight: 800; color: #fff; letter-spacing: 6px; }
+    .page-hero p { color: #c9a84c; letter-spacing: 3px; text-transform: uppercase; margin-top: 12px; }
+    .collections { padding: 80px 60px; }
+    .collections-header { text-align: center; margin-bottom: 60px; }
+    .collections-header h2 { font-size: 42px; font-weight: 700; }
+    .collections-header p { color: #888; margin-top: 12px; font-size: 17px; }
+    .collections-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; }
+    .collection-card { border-radius: 4px; overflow: hidden; border: 1px solid #eee; transition: all 0.3s; }
+    .collection-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .collection-img { height: 280px; display: flex; align-items: center; justify-content: center; font-size: 80px; }
+    .collection-info { padding: 24px; }
+    .collection-info h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .collection-info p { color: #888; font-size: 14px; line-height: 1.6; margin-bottom: 16px; }
+    .collection-tag { display: inline-block; background: #f5f5f5; color: #555; padding: 4px 12px;
+        border-radius: 20px; font-size: 12px; letter-spacing: 1px; }
+</style>
+{% endblock %}
+{% block content %}
+<section class="page-hero">
+    <div>
+        <h1>COLLECTIONS</h1>
+        <p>2026 Seasonal Catalogue</p>
+    </div>
+</section>
+<section class="collections">
+    <div class="collections-header">
+        <h2>Our Current Collections</h2>
+        <p>Carefully curated for the modern retail market</p>
+    </div>
+    <div class="collections-grid">
+        <div class="collection-card">
+            <div class="collection-img" style="background:#f0e6d3;">👔</div>
+            <div class="collection-info">
+                <h3>Men's Formal</h3>
+                <p>Premium suits, shirts, and accessories for the modern professional.</p>
+                <span class="collection-tag">NEW SEASON</span>
+            </div>
+        </div>
+        <div class="collection-card">
+            <div class="collection-img" style="background:#e8f0fe;">👗</div>
+            <div class="collection-info">
+                <h3>Women's Luxury</h3>
+                <p>Elegant dresses, blouses, and outerwear for every occasion.</p>
+                <span class="collection-tag">BESTSELLER</span>
+            </div>
+        </div>
+        <div class="collection-card">
+            <div class="collection-img" style="background:#e8f5e9;">👕</div>
+            <div class="collection-info">
+                <h3>Casual Wear</h3>
+                <p>Comfortable everyday clothing for men and women of all ages.</p>
+                <span class="collection-tag">POPULAR</span>
+            </div>
+        </div>
+        <div class="collection-card">
+            <div class="collection-img" style="background:#fce4ec;">🧥</div>
+            <div class="collection-info">
+                <h3>Winter Collection</h3>
+                <p>Warm coats, jackets, and knitwear for the cold season.</p>
+                <span class="collection-tag">SEASONAL</span>
+            </div>
+        </div>
+        <div class="collection-card">
+            <div class="collection-img" style="background:#fff3e0;">👟</div>
+            <div class="collection-info">
+                <h3>Footwear</h3>
+                <p>Quality shoes and boots across all styles and price points.</p>
+                <span class="collection-tag">NEW</span>
+            </div>
+        </div>
+        <div class="collection-card">
+            <div class="collection-img" style="background:#f3e5f5;">👜</div>
+            <div class="collection-info">
+                <h3>Accessories</h3>
+                <p>Bags, belts, scarves, and jewellery to complete any look.</p>
+                <span class="collection-tag">TRENDING</span>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
