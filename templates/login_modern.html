@@ -1,10 +1,10 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - CRM Pro</title>
+    <title>Sign In - HITLUR CRM</title>
     
     <!-- Tailwind CSS -->
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
@@ -14,131 +14,102 @@
     
     <style>
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            background: #0d0f1a;
+        }
+        
+        .login-card {
+            background: #1a1d2e;
+            border: 1px solid #252840;
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen">
+<body class="min-h-screen flex items-center justify-center p-6">
     <div class="w-full max-w-md">
-        <!-- Logo -->
-        <div class="text-center mb-8 animate-fade-in">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 mb-4">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7 12a5 5 0 1110 0 5 5 0 01-10 0z"></path>
-                </svg>
+        
+        <!-- Logo & Brand -->
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 bg-gradient-to-br from-[#7c6ef5] to-[#10d4a0] rounded-2xl flex items-center justify-center text-white text-3xl font-bold">
+                    H
+                </div>
+                <div class="text-4xl font-bold tracking-tighter">
+                    HIT<span class="text-[#10d4a0]">LUR</span>
+                </div>
             </div>
-            <h1 class="text-3xl font-bold text-white mb-2">CRM Pro</h1>
-            <p class="text-white/80">Modern SaaS CRM Platform</p>
+            <h1 class="text-3xl font-semibold text-white">Welcome Back</h1>
+            <p class="text-[#9196b3] mt-2">Sign in to access your CRM dashboard</p>
         </div>
 
         <!-- Login Card -->
-        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden animate-slide-up">
-            <!-- Card Header -->
-            <div class="bg-gradient-to-r from-blue-600 to-cyan-600 px-8 py-8">
-                <h2 class="text-2xl font-bold text-white mb-2">Welcome Back</h2>
-                <p class="text-blue-100">Sign in to your account to continue</p>
-            </div>
-
-            <!-- Login Form -->
-            <form method="post" class="px-8 py-8 space-y-6">
+        <div class="login-card rounded-3xl shadow-2xl p-10">
+            <form method="post" class="space-y-8">
                 {% csrf_token %}
 
                 <!-- Error Messages -->
                 {% if form.non_field_errors %}
-                <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                <div class="bg-red-900/30 border border-red-500/50 text-red-300 p-4 rounded-2xl text-sm">
                     {% for error in form.non_field_errors %}
-                    <p class="text-red-700 text-sm font-medium">{{ error }}</p>
+                        <p>{{ error }}</p>
                     {% endfor %}
                 </div>
                 {% endif %}
 
-                <!-- Username Field -->
+                <!-- Username / Email -->
                 <div>
-                    <label for="id_username" class="block text-sm font-semibold text-gray-900 mb-2">
+                    <label class="block text-[#9196b3] text-sm font-medium mb-2">
                         Username or Email
                     </label>
-                    <div class="relative">
-                        <svg class="absolute left-3 top-3.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>
-                        </svg>
-                        {{ form.username }}
-                    </div>
-                    {% if form.username.errors %}
-                    <p class="text-red-600 text-sm mt-1">{{ form.username.errors.0 }}</p>
-                    {% endif %}
+                    <input type="text" name="username" id="id_username" 
+                           class="w-full bg-[#1f2235] border border-[#2e3250] rounded-2xl px-5 py-4 focus:outline-none focus:border-[#7c6ef5] text-white"
+                           placeholder="Enter your username or email" required>
                 </div>
 
-                <!-- Password Field -->
+                <!-- Password -->
                 <div>
-                    <label for="id_password" class="block text-sm font-semibold text-gray-900 mb-2">
+                    <label class="block text-[#9196b3] text-sm font-medium mb-2">
                         Password
                     </label>
-                    <div class="relative">
-                        <svg class="absolute left-3 top-3.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                        </svg>
-                        {{ form.password }}
-                    </div>
-                    {% if form.password.errors %}
-                    <p class="text-red-600 text-sm mt-1">{{ form.password.errors.0 }}</p>
-                    {% endif %}
+                    <input type="password" name="password" id="id_password" 
+                           class="w-full bg-[#1f2235] border border-[#2e3250] rounded-2xl px-5 py-4 focus:outline-none focus:border-[#7c6ef5] text-white"
+                           placeholder="Enter your password" required>
                 </div>
 
-                <!-- Remember Me & Forgot Password -->
+                <!-- Remember Me -->
                 <div class="flex items-center justify-between">
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="remember" class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                        <span class="text-sm text-gray-700">Remember me</span>
+                    <label class="flex items-center gap-2 cursor-pointer text-sm text-[#9196b3]">
+                        <input type="checkbox" name="remember" class="w-4 h-4 accent-[#7c6ef5]">
+                        Remember me
                     </label>
-                    <a href="#" class="text-sm text-blue-600 hover:text-blue-700 font-medium">Forgot password?</a>
+                    <a href="#" class="text-[#7c6ef5] hover:text-white text-sm font-medium">
+                        Forgot password?
+                    </a>
                 </div>
 
-                <!-- Sign In Button -->
-                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold py-3 rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+                <!-- Submit Button -->
+                <button type="submit" 
+                        class="w-full bg-[#7c6ef5] hover:bg-[#6a5ce8] text-white font-semibold py-4 rounded-2xl transition-all duration-200 text-lg">
                     Sign In
                 </button>
-
-                <!-- Divider -->
-                <div class="relative">
-                    <div class="absolute inset-0 flex items-center">
-                        <div class="w-full border-t border-gray-300"></div>
-                    </div>
-                    <div class="relative flex justify-center text-sm">
-                        <span class="px-2 bg-white text-gray-500">Don't have an account?</span>
-                    </div>
-                </div>
-
-                <!-- Sign Up Link -->
-                <a href="{% url 'admin:login' %}" class="w-full border-2 border-gray-300 text-gray-900 font-semibold py-3 rounded-lg hover:bg-gray-50 transition-colors text-center">
-                    Create Account
-                </a>
             </form>
 
-            <!-- Footer -->
-            <div class="bg-gray-50 px-8 py-4 border-t border-gray-200">
-                <p class="text-center text-sm text-gray-600">
-                    By signing in, you agree to our <a href="#" class="text-blue-600 hover:underline">Terms of Service</a>
-                </p>
+            <!-- Demo Credentials -->
+            <div class="mt-8 bg-[#131626] border border-[#252840] rounded-2xl p-5 text-sm">
+                <p class="text-[#10d4a0] font-medium mb-2">Demo Credentials</p>
+                <div class="space-y-1 text-[#9196b3]">
+                    <p>Username: <span class="font-mono text-white">admin</span></p>
+                    <p>Password: <span class="font-mono text-white">admin123</span></p>
+                </div>
             </div>
         </div>
 
-        <!-- Demo Info -->
-        <div class="mt-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 text-white animate-fade-in" style="animation-delay: 0.2s">
-            <h3 class="font-semibold mb-3 flex items-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                Demo Credentials
-            </h3>
-            <p class="text-sm text-white/80 space-y-1">
-                <div>Username: <span class="font-mono font-semibold">admin</span></div>
-                <div>Password: <span class="font-mono font-semibold">admin123</span></div>
-            </p>
+        <div class="text-center mt-8 text-[#5c6080] text-sm">
+            © 2026 HITLUR CRM. All rights reserved.
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="{% static 'js/app.js' %}"></script>
+    <script>
+        // Auto-focus username field
+        document.getElementById('id_username').focus();
+    </script>
 </body>
 </html>
