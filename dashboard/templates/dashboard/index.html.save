@@ -152,32 +152,35 @@ body { font-family:'Segoe UI',sans-serif; background:var(--bg); color:var(--text
 <body>
 
 <!-- SIDEBAR -->
-<div class="sidebar">
+ss="sidebar">
   <div class="sidebar-logo">HIT<span>LUR</span> CRM</div>
   <div class="nav-section">Main</div>
   <a class="nav-item active" href="/dashboard/">
-<span class="icon">📊</span> Dashboard</a>
-
-<a class="nav-item" href="/{{ LANGUAGE_CODE }}/456-admin/crm/deal/">
-<span class="icon">💼</span> Deals</a>
-
-<a class="nav-item" href="/{{ LANGUAGE_CODE }}/456-admin/crm/lead/">
-<span class="icon">👤</span> Leads</a>
-
-<a class="nav-item" href="/{{ LANGUAGE_CODE }}/456-admin/crm/company/">
-<span class="icon">🏢</span> Companies</a>
-
-<a class="nav-item" href="/{{ LANGUAGE_CODE }}/456-admin/tasks/task/">
-<span class="icon">✅</span> Tasks</a>
-
-<a class="nav-item" href="/{{ LANGUAGE_CODE }}/456-admin/massmail/">
-<span class="icon">📧</span> Mass Mail</a>
-
-<a class="nav-item" href="/{{ LANGUAGE_CODE }}/456-admin/analytics/">
-<span class="icon">📈</span> Analytics</a>
-
-<a class="nav-item" href="/{{ LANGUAGE_CODE }}/456-admin/">
-<span class="icon">⚙️</span> Admin Panel</a>
+    <span class="icon">📊</span> Dashboard
+  </a>
+  <a class="nav-item" href="/456-admin/crm/deal/">
+    <span class="icon">💼</span> Deals
+  </a>
+  <a class="nav-item" href="/456-admin/crm/lead/">
+    <span class="icon">👤</span> Leads
+  </a>
+  <a class="nav-item" href="/456-admin/crm/company/">
+    <span class="icon">🏢</span> Companies
+  </a>
+  <div class="nav-section">Tools</div>
+  <a class="nav-item" href="/456-admin/tasks/task/">
+    <span class="icon">✅</span> Tasks
+  </a>
+  <a class="nav-item" href="/456-admin/massmail/">
+    <span class="icon">📧</span> Mass Mail
+  </a>
+  <a class="nav-item" href="/456-admin/analytics/">
+    <span class="icon">📈</span> Analytics
+  </a>
+  <div class="nav-section">Settings</div>
+  <a class="nav-item" href="/456-admin/">
+    <span class="icon">⚙️</span> Admin Panel
+  </a>
   <div class="sidebar-bottom">
     <div class="user-info">
       <div class="avatar">{{ request.user.username|slice:":1"|upper }}</div>
@@ -200,8 +203,8 @@ body { font-family:'Segoe UI',sans-serif; background:var(--bg); color:var(--text
     </div>
     <div class="topbar-right">
       <span class="badge">🔴 Live</span>
-     <a href="/{{ LANGUAGE_CODE }}/456-admin/crm/deal/add/" class="btn btn-primary">+ New Deal</a>
-     <a href="/{{ LANGUAGE_CODE }}/456-admin/" class="btn" style="background:var(--card2);color:var(--text);">Admin</a>
+      <a href="/456-admin/crm/deal/add/" class="btn btn-primary">+ New Deal</a>
+      <a href="/456-admin/" class="btn" style="background:var(--card2);color:var(--text);">Admin</a>
     </div>
   </div>
 

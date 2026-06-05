@@ -12,6 +12,7 @@ from massmail.views.get_oauth2_tokens import get_refresh_token
 from django.urls import include
 
 urlpatterns = [
+    path('dashboard/', include('dashboard.urls')),
     path('favicon.ico', FaviconRedirect.as_view()),
     path('voip/', include('voip.urls')),
     path(
