@@ -19,6 +19,7 @@ urlpatterns = [
         staff_member_required(get_refresh_token), 
         name='get_refresh_token'
     ),   
+    path('dashboard/', include('dashboard.urls')),
 ]
 
 urlpatterns += static(

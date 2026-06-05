@@ -118,7 +118,8 @@ INSTALLED_APPS = [
     'voip',
     'common.apps.CommonConfig',
     'settings',
-    'quality'
+    'quality',
+    'dashboard'
 ]
 
 MIDDLEWARE = [
