@@ -17,7 +17,7 @@ def dashboard_view(request):
     # Deals by stage
     deals_by_stage = list(
         Deal.objects.filter(active=True)
-        .values('stage__title')
+        .values('stage__name')
         .annotate(count=Count('id'), total=Sum('amount'))
         .order_by('-total')
     )

@@ -282,7 +282,7 @@ body { font-family:'Segoe UI',sans-serif; background:var(--bg); color:var(--text
           {% for deal in top_deals %}
           <tr>
             <td>{{ deal.name|truncatechars:25 }}</td>
-            <td><span class="stage-pill stage-{{ forloop.counter0|divisibleby:4 }}">{{ deal.stage.title|default:"—" }}</span></td>
+            <td><span class="stage-pill stage-{{ forloop.counter0|divisibleby:4 }}">{{ deal.stage.name|default:"—" }}</span></td>
             <td>
               {{ deal.probability }}%
               <div class="prob-bar"><div class="prob-fill" style="width:{{ deal.probability }}%"></div></div>
@@ -330,7 +330,7 @@ body { font-family:'Segoe UI',sans-serif; background:var(--bg); color:var(--text
       <div class="pipeline">
         {% for stage in deals_by_stage %}
         <div class="pipeline-item">
-          <div class="pipeline-label">{{ stage.stage__title|default:"No Stage"|truncatechars:10 }}</div>
+          <div class="pipeline-label">{{ stage.stage__name|default:"No Stage"|truncatechars:10 }}</div>
           <div class="pipeline-track">
             <div class="pipeline-fill" style="width:{{ stage.count|add:0 }}0%;background:hsl({{ forloop.counter0|add:200 }},70%,50%);"></div>
           </div>
